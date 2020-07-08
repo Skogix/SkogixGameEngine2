@@ -7,11 +7,6 @@ namespace ECS
         void Init();
     }
 
-    public interface IDestroySystem : ISystem
-    {
-        void Destroy();
-    }
-
     public interface IRunSystem : ISystem
     {
         void Run();
