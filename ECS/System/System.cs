@@ -8,7 +8,8 @@ namespace ECS
     {
         public readonly string Name;
         public readonly World World;
-        readonly List<ISystem> _allSystems = new List<ISystem>();
+        readonly Dictionary<int, ISystem> _allSystems = new Dictionary<int, ISystem>();
+        readonly Dictionary<int, IRunSystem> _runSystems = new Dictionary<int, IRunSystem>();
 
         public System(World world, string name)
         {
@@ -22,7 +23,20 @@ namespace ECS
         /// </summary>
         public void Init()
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < _allSystems.Count; i++)
+            {
+                var system = _allSystems[i];
+                if (system is IInitSystem initSystem)
+                {
+                    initSystem.Init();
+                }
+            }
+
+            foreach (var pair in _allSystems)
+            {
+                if(_allSystems[pair.Key] is IInitSystem initSystem)
+                    initSystem.Init();
+            }
         }
 
         /// <summary>
@@ -30,7 +44,10 @@ namespace ECS
         /// </summary>
         public void Run()
         {
-            throw new NotImplementedException();
+            foreach (var pair in _runSystems)
+            {
+               _runSystems[pair.Key].Run();
+            }
         }
     }
 }
