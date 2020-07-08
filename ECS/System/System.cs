@@ -8,8 +8,8 @@ namespace ECS
     {
         public readonly string Name;
         public readonly World World;
-        readonly Dictionary<int, ISystem> _allSystems = new Dictionary<int, ISystem>();
-        readonly Dictionary<int, IRunSystem> _runSystems = new Dictionary<int, IRunSystem>();
+        private readonly Dictionary<int, ISystem> _allSystems = new Dictionary<int, ISystem>();
+        private readonly Dictionary<int, IRunSystem> _runSystems = new Dictionary<int, IRunSystem>();
 
         public System(World world, string name)
         {

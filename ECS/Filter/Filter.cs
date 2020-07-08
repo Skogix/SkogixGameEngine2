@@ -25,20 +25,32 @@ namespace ECS
         /// <summary>
         /// Lägger till en listener till events
         /// </summary>
-        /// <param name="listener"></param>
-        public void AddListener(IFilterListener listener){}
-        
+        public void AddListener(IFilterListener filterListener)
+        {
+            Listeners.Add(filterListener);
+        }
+
         /// <summary>
         /// Tar bort en listener från events
         /// </summary>
-        /// <param name="listener"></param>
-        public void RemoveListener(IFilterListener listener){}
-        
+        public void RemoveListener(IFilterListener filterListener)
+        {
+            Listeners.Remove(filterListener);
+        }
+
         /// <summary>
         /// Kör listeners
         /// </summary>
-        /// <param name="entity"></param>
-        protected void RunListeners(in Entity entity){}
+        protected void RunListeners(in Entity entity)
+        {
+            foreach (var listener in Listeners)
+            {
+                // ToDo: Hitta något bra sätt att filtrera på förutom att skicka med mer skit
+                listener.OnEntityAdded(entity);
+                listener.OnEntityRemoved(entity);
+                
+            }
+        }
 
         public abstract void OnAddEntity(in Entity entity);
         public abstract void OnRemoveEntity(in Entity entity);
