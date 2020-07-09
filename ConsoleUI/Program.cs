@@ -10,6 +10,7 @@ namespace ConsoleUI
             
             World world = new World();
             Entity entity = world.NewEntity();
+            Console.WriteLine(entity.ToString());
         }
     }
 }

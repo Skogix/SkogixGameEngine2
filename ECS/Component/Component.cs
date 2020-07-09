@@ -4,12 +4,7 @@ using System.Linq;
 
 namespace ECS
 {
-    public sealed class ComponentPool
-    {
-        internal static int ComponentTypesCount;
-    }
-
-    public sealed class ComponentPool<T> : IComponentPool where T : struct
+    public sealed class Component<T> : IComponent where T : struct
     {
         public Type ItemType { get; }
         public object GetItem(int id)
@@ -22,7 +17,7 @@ namespace ECS
 
         public Dictionary<int, T> Components = new Dictionary<int, T>();
 
-        public ComponentPool()
+        public Component()
         {
             ItemType = typeof(T);
         }
