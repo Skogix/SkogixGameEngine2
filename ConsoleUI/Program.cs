@@ -1,4 +1,5 @@
 ﻿using System;
+using ECS;
 
 namespace ConsoleUI
 {
@@ -6,7 +7,8 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            
+            World world = new World();
+            Entity entity = world.NewEntity();
         }
     }
 }

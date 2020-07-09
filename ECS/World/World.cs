@@ -49,5 +49,7 @@ namespace ECS
                         filter.OnRemoveEntity(entity);
             }
         }
+        
+        
     }
 }
